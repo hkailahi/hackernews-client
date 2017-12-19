@@ -14,11 +14,10 @@ import Button from '../Button';
 import Table from '../Table';
 import Search from '../Search';
 
-// const url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${"redux"}&${PARAM_PAGE}${1}&${PARAM_HPP}${DEFAULT_HPP}`;
-// console.log(url);
-
 /* -- Proxy to bypass Algolia CORS issues -- */
+// const url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${"redux"}&${PARAM_PAGE}${1}&${PARAM_HPP}${DEFAULT_HPP}`;
 // const proxyurl = "https://cors-anywhere.herokuapp.com/";
+const proxyurl = "";
 // console.log(proxyurl + url);
 
 class App extends Component {
@@ -67,7 +66,8 @@ class App extends Component {
   }
 
   fetchSearchTopStories(searchTerm, page = 0) {
-    fetch(`${PATH_BASE}${PATH_SEARCH}`
+    fetch(proxyurl
+        + `${PATH_BASE}${PATH_SEARCH}`
         + `?${PARAM_SEARCH}${searchTerm}`
         + `&${PARAM_PAGE}${page}`
         + `&${PARAM_HPP}${DEFAULT_HPP}`
