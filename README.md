@@ -12,7 +12,7 @@ No 'Access-Control-Allow-Origin' header is present on the requested resource. Or
 your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled
 ```
 
-Please change the following in [App component index](./src/components/App/components/index.js)
+Please change the following in [App component index](/src/components/App/components/index.js)
 ```javascript
 // const proxyurl = "https://cors-anywhere.herokuapp.com/";
 const proxyurl = "";
