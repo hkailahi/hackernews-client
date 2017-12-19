@@ -13,6 +13,7 @@ import {
 import Button from '../Button';
 import Table from '../Table';
 import Search from '../Search';
+import Loading from '../Loading';
 
 /* -- Proxy to bypass Algolia CORS issues -- */
 // const url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${"redux"}&${PARAM_PAGE}${1}&${PARAM_HPP}${DEFAULT_HPP}`;
@@ -30,6 +31,7 @@ class App extends Component {
       searchKey: '',
       searchTerm: DEFAULT_QUERY,
       error: null,
+      isLoading: false,
     };
 
     this.needsToSearchTopStories = this.needsToSearchTopStories.bind(this);
@@ -60,12 +62,14 @@ class App extends Component {
     this.setState({
       results: {
         ...results,
-        [searchKey]: { hits: updatedHits, page }
+        [searchKey]: { hits: updatedHits, page },
+        isLoading: false
       }
     });
   }
 
   fetchSearchTopStories(searchTerm, page = 0) {
+    this.setState({ isLoading: true });
     fetch(proxyurl
         + `${PATH_BASE}${PATH_SEARCH}`
         + `?${PARAM_SEARCH}${searchTerm}`
@@ -116,7 +120,8 @@ class App extends Component {
       searchTerm,
       results,
       searchKey,
-      error
+      error,
+      isLoading
     } = this.state;
 
     const page = (
@@ -152,9 +157,13 @@ class App extends Component {
           />
         }
         <div className="interactions">
-          <Button onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
-            More
-          </Button>
+          { isLoading
+            ? <Loading/>
+            : <Button
+              onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
+              More
+            </Button>
+          }
         </div>
       </div>
     );
