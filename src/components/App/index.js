@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './index.css';
+import fetch from 'isomorphic-fetch';
 import {
   DEFAULT_QUERY,
   DEFAULT_HPP,
@@ -15,6 +16,10 @@ import Search from '../Search';
 
 // const url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${"redux"}&${PARAM_PAGE}${1}&${PARAM_HPP}${DEFAULT_HPP}`;
 // console.log(url);
+
+/* -- Proxy to bypass Algolia CORS issues -- */
+// const proxyurl = "https://cors-anywhere.herokuapp.com/";
+// console.log(proxyurl + url);
 
 class App extends Component {
 
@@ -65,7 +70,8 @@ class App extends Component {
     fetch(`${PATH_BASE}${PATH_SEARCH}`
         + `?${PARAM_SEARCH}${searchTerm}`
         + `&${PARAM_PAGE}${page}`
-        + `&${PARAM_HPP}${DEFAULT_HPP}`)
+        + `&${PARAM_HPP}${DEFAULT_HPP}`
+        )
       .then(response => response.json())
       .then(result => this.setSearchTopStories(result))
       .catch(e => this.setState({ error: e }));
