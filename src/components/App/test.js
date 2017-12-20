@@ -6,7 +6,7 @@ import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16'
 import App from '../App';
 import Search from '../Search';
-import Button from '../Button'
+import {Button} from '../Button'
 import Table from '../Table'
 
 Enzyme.configure({ adapter: new Adapter() });

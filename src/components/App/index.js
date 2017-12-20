@@ -10,10 +10,9 @@ import {
   PARAM_PAGE,
   PARAM_HPP,
 } from '../../constants';
-import Button from '../Button';
+import {ButtonWithLoading} from '../Button';
 import Table from '../Table';
 import Search from '../Search';
-import Loading from '../Loading';
 
 /* -- Proxy to bypass Algolia CORS issues -- */
 // const url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${"redux"}&${PARAM_PAGE}${1}&${PARAM_HPP}${DEFAULT_HPP}`;
@@ -157,13 +156,11 @@ class App extends Component {
           />
         }
         <div className="interactions">
-          { isLoading
-            ? <Loading/>
-            : <Button
-              onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
-              More
-            </Button>
-          }
+          <ButtonWithLoading
+            isLoading={isLoading}
+            onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
+            More
+          </ButtonWithLoading>
         </div>
       </div>
     );
