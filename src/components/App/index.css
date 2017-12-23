@@ -31,7 +31,17 @@
   margin: 10px 0;
   padding: 10px;
   background: #ffffff;
-  border: 1px solid #e3e3e3;
+  /* background: #f6f6ef; */
+  border: 1px solid #ff6600;
+}
+
+.table-row:hover {
+  box-shadow: 0px 2px 18px 0px rgba(0,0,0,0.5);
+  cursor: pointer;
+  background: #ffdd99;
+  transform:scale(1.015,1.015);
+  transform-origin:center;
+  /* border-radius: 8px; */
 }
 
 .table-header > span {
@@ -72,4 +82,10 @@
 
 .smallColumn {
   width: 10%;
+}
+
+input {
+  background: #ffffff;
+  /* font-weight: bold; */
+  color: #000000;
 }

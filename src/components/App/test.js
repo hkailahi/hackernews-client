@@ -6,8 +6,9 @@ import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16'
 import App from '../App';
 import Search from '../Search';
-import {Button} from '../Button'
-import Table from '../Table'
+import {Button} from '../Button';
+import Table from '../Table';
+import {Sort, SORTS} from '../Sort';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -68,7 +69,9 @@ describe('Table', () => {
     list: [
       { title: '1', author: '1', num_comments: 1, points: 2, objectID: 'y'},
       { title: '2', author: '2', num_comments: 1, points: 2, objectID: 'z'}
-    ]
+    ],
+    sortKey: 'TITLE',
+    isSortReverse: false,
   }
 
   it('renders without crashing', () => {

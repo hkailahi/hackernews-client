@@ -1,15 +1,18 @@
 body {
   color: #222;
-  background: #f4f4f4;
+  /* background: #f4f4f4; */
+  background: #f6f6ef;
   font: 400 14px CoreSans, Arial, sans-serif;
 }
 
 a {
-  color: #222;
+  color: #222222;
+  text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
+  color: #1010a5;
 }
 
 ul, li {
@@ -23,12 +26,14 @@ input {
   border-radius: 5px;
   border: 1px solid #dddddd;
   background: transparent;
-  color: #808080;
+  color: #828282;
   cursor: pointer;
 }
 
 button:hover {
-  color: #222;
+  /* color: #222222; */
+  /* font-weight: bold; */
+  color: #cc0000;
 }
 
 *:focus {
