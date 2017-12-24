@@ -12,7 +12,7 @@ import {
 } from '../../constants';
 import {ButtonWithLoading} from '../Button';
 import Table from '../Table';
-import Search from '../Search';
+import {Search, updateSearchTopStories} from '../Search';
 
 /* -- Proxy to bypass Algolia CORS issues -- */
 // const url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${"redux"}&${PARAM_PAGE}${1}&${PARAM_HPP}${DEFAULT_HPP}`;
@@ -41,7 +41,6 @@ class App extends Component {
     this.onSearchChange = this.onSearchChange.bind(this);
     this.onSearchSubmit = this.onSearchSubmit.bind(this)
     this.onDismiss = this.onDismiss.bind(this);
-    // this.onSort = this.onSort.bind(this);
   }
 
   needsToSearchTopStories(searchTerm) {
@@ -50,24 +49,8 @@ class App extends Component {
 
   setSearchTopStories(result) {
     const { hits, page } = result;
-    const { searchKey, results } = this.state;
 
-    const oldHits = results && results[searchKey]
-      ? results[searchKey].hits
-      : [];
-
-    const updatedHits = [
-      ...oldHits,
-      ...hits
-    ];
-
-    this.setState({
-      results: {
-        ...results,
-        [searchKey]: { hits: updatedHits, page },
-        isLoading: false
-      }
-    });
+    this.setState(updateSearchTopStories(hits, page));
   }
 
   fetchSearchTopStories(searchTerm, page = 0) {
@@ -116,10 +99,6 @@ class App extends Component {
       }
     });
   }
-
-  // onSort(sortKey) {
-  //   this.setState({ sortKey });
-  // }
 
   render() {
     const {
